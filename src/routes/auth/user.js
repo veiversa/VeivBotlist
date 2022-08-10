@@ -5,6 +5,7 @@ export async function GET({ url }) {
     const accessToken = url.searchParams.get('access_token');
     const tokenType = url.searchParams.get('token_type') || 'Bearer';
 
+    
     if (!accessToken) {
         return {
             status: 403,

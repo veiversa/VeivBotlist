@@ -1,48 +1,39 @@
 <script>
-	// @ts-nocheck
-
 	import {
 		Button,
-		TextBlock,
 		PersonPicture,
-		TextBox,
 		IconButton,
-		InfoBar,
-		MenuFlyout,
 		MenuFlyoutItem,
-		MenuFlyoutDivider
+		MenuFlyoutDivider,
+		ContextMenu
 	} from 'fluent-svelte';
 	import 'fluent-svelte/theme.css';
 
+	import image from '$lib/images/veiv.png';
+
+	/** @type {Record<string, any> | false} */
 	export let user;
 </script>
 
-<main class="w-full h-16 flex items-center justify-around">
+<div class="w-full h-16 flex items-center justify-around">
 	<div class="text-gray-100">
 		<!--Logo Name-->
-		<TextBlock variant="title">VeivBotlist</TextBlock>
-	</div>
-	<div class="w-[450px]">
-		<!--Search-->
-		<TextBox type="search" placeholder="Search Bots!" />
+		<img src={image} alt="logo" width="60" />
 	</div>
 
 	{#if user}
-		<div class="">
-			<MenuFlyout placement="bottom" closeOnSelect=false>
-				<IconButton>
-					<PersonPicture size={50} src={user.avatar_url} />
-				</IconButton>
+		<ContextMenu>
+			<IconButton href={`/profile/${user.id}`}>
+				<PersonPicture size={50} src={user.avatar_url} />
+			</IconButton>
 
-				<svelte:fragment slot="flyout" >
-					<MenuFlyoutItem>anan</MenuFlyoutItem>
-					<MenuFlyoutDivider />
-					<MenuFlyoutItem>anan</MenuFlyoutItem>
-					<MenuFlyoutItem>anan</MenuFlyoutItem>
-				</svelte:fragment>
-			</MenuFlyout>
-		</div>
+			<svelte:fragment slot="flyout">
+				<MenuFlyoutItem href="/admin">Admin</MenuFlyoutItem>
+				<MenuFlyoutDivider />
+				<a href="/auth/logout"><MenuFlyoutItem>Logout</MenuFlyoutItem></a>
+			</svelte:fragment>
+		</ContextMenu>
 	{:else}
-		<a href="/auth/login"><Button variant="hyperlink">Login</Button></a>
+		<Button variant="accent" href="/auth/login">Login</Button>
 	{/if}
-</main>
+</div>

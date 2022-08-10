@@ -1,7 +1,3 @@
 <script>
 
 </script>
-
-<main>
-                                                                                                            
-</main>
