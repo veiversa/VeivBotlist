@@ -6,7 +6,10 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	kit: {
 		adapter: adapter(),
-		appDir: '__data'
+		appDir: '__data',
+		files: {
+			routes: 'src/pages'
+		}
 	},
 	preprocess: [
 		preprocess({

@@ -7,7 +7,6 @@
 		MenuFlyoutDivider,
 		ContextMenu
 	} from 'fluent-svelte';
-	import 'fluent-svelte/theme.css';
 
 	import image from '$lib/images/veiv.png';
 
@@ -16,10 +15,7 @@
 </script>
 
 <div class="w-full h-16 flex items-center justify-around">
-	<div class="text-gray-100">
-		<!--Logo Name-->
-		<img src={image} alt="logo" width="60" />
-	</div>
+	<img src={image} alt="logo" width="60" />
 
 	{#if user}
 		<ContextMenu>
@@ -34,6 +30,6 @@
 			</svelte:fragment>
 		</ContextMenu>
 	{:else}
-		<Button variant="accent" href="/auth/login">Login</Button>
+		<Button variant="accent" href="/auth/login" class="w-20">Login</Button>
 	{/if}
 </div>

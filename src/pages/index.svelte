@@ -19,14 +19,14 @@
 			props: { user: session.user }
 		};
 	}
-	import 'fluent-svelte/theme.css';
 </script>
 
 <script>
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import { TextBox } from 'fluent-svelte';
 	import PopulerBot from '$lib/components/PopulerBots.svelte';
+	import SearchBots from '$lib/components/SearchBots.svelte';
+
 	/** @type {Record<string, any> | false} */
 	export let user;
 </script>
@@ -34,8 +34,14 @@
 <head>
 	<title>VeivBotlist</title>
 </head>
-<div>
-	<Navbar {user} />
-	<Footer />
-	<PopulerBot/>
-</div>
+
+<Navbar {user} />
+<Footer />
+<SearchBots />
+<PopulerBot />
+
+<style lang="scss">
+	:global(body) {
+		background-image: linear-gradient(to right, #141f24, #212121);
+	}
+</style>

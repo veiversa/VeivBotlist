@@ -1,16 +1,27 @@
 <script>
+	import '$lib/styles/fluent-svelte.css'
 	import '../app.css';
 	import { ProgressRing } from 'fluent-svelte';
-	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
-
 	let url = $page.url;
 	let loaded = false;
+	let serversReady = false;
 
-	onMount(() => {
-		loaded = true;
-	});
+	async function checkServers() {
+		const response = await fetch(import.meta.env.VITE_API_URL);
+		return response.status === 200;
+	}
+
+	checkServers()
+		.then((_) => {
+			serversReady = _;
+			loaded = true;
+		})
+		.catch(() => {
+			serversReady = false;
+			loaded = true;
+		});
 </script>
 
 {#if !loaded}
@@ -18,7 +29,7 @@
 		size={64}
 		style="position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%)"
 	/>
-{:else}
+{:else if serversReady}
 	{#key url}
 		<div
 			in:fade={{
@@ -30,4 +41,9 @@
 			<slot />
 		</div>
 	{/key}
+{:else}
+	<br />
+	<br />
+	<br />
+	<h1 class="text-white text-3xl text-center">Sunucularımız Kapalı</h1>
 {/if}
