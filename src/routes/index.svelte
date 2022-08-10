@@ -26,7 +26,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import { TextBox } from 'fluent-svelte';
-	import PopulerBot from '$lib/components/PopulerBot.svelte';
+	import PopulerBot from '$lib/components/PopulerBots.svelte';
 	/** @type {Record<string, any> | false} */
 	export let user;
 </script>
