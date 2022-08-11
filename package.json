@@ -1,0 +1,25 @@
+{
+    "name": "veiv-botlist",
+    "version": "1.0.0",
+    "main": "src/bot/index.js",
+    "license": "MIT",
+    "dependencies": {
+        "better-sqlite3": "^7.6.2",
+        "cors": "^2.8.5",
+        "discord.js": "^14.2.0",
+        "dotenv": "^16.0.1",
+        "erax.db": "^4.1.3",
+        "express": "^4.18.1",
+        "node-fetch": "^3.2.10"
+    },
+    "type": "module",
+    "devDependencies": {
+        "eslint": "^8.20.0",
+        "eslint-config-prettier": "^8.5.0",
+        "prettier": "^2.7.1"
+    },
+    "scripts": {
+        "start": "node .",
+        "lint": "prettier --check --plugin-search-dir=. . && eslint ."
+    }
+}
