@@ -113,7 +113,7 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/adapter-auto@next":
+"@sveltejs/adapter-auto@^1.0.0-next.64":
   version "1.0.0-next.64"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-1.0.0-next.64.tgz#56c68a85a0f910891862bb7b599fe3ec92c35f0c"
   integrity sha512-Q8DwcS6wl1GovzS9JJzaD/WL/Lfk1ur4nAF1HtmsUvZDpsPBVDqnK2AhYU4G3oFNiuHstrjAogMy5th8ptSFGw==
@@ -1145,6 +1145,21 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
@@ -1639,6 +1654,14 @@ signal-exit@^3.0.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.7.tgz#a9a1767f8af84155114eaabd73f99273c8f59ad9"
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
+"simply-reactive@github:vadimkorr/simply-reactive#1.0.2":
+  version "1.0.0"
+  resolved "https://codeload.github.com/vadimkorr/simply-reactive/tar.gz/f403097d695030306bdfd0f849411fd28ad7d474"
+  dependencies:
+    lodash.clonedeep "^4.5.0"
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
+
 slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
@@ -1710,6 +1733,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+svelte-carousel@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/svelte-carousel/-/svelte-carousel-1.0.19.tgz#f3f57650cd373496f79fa45ae85b924a35112edb"
+  integrity sha512-fA2/jlCApJGmOJu06HJUof7ppyxYBzScpYSuyVb0sQ+51JatSsKB7cr3Co9LWCObGLBCzm1d2EN3jp4qF32ZaQ==
+  dependencies:
+    simply-reactive vadimkorr/simply-reactive#1.0.2
 
 svelte-check@^2.7.1:
   version "2.8.0"

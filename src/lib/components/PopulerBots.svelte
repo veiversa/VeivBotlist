@@ -46,13 +46,13 @@
 	import { Button } from 'fluent-svelte';
 </script>
 
-<div class="container grid grid-cols-1 gap-7 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2">
+<div class="w-full overflow-auto ">
 	{#each bots as bot}
-		<div class="w-[440px] h-[276px] grid border rounded mx-auto">
+		<div class="w-[440px] h-[276px] border rounded">
 			<img src={bot.image} width="208px" alt={bot.name} />
 			<div class="mx-auto">
-				<a href=""><Button>Add Server</Button></a>
-				<a href=""><Button>Vote</Button></a>
+				<a href="a"><Button>Add Server</Button></a>
+				<a href="a"><Button>Vote</Button></a>
 			</div>
 		</div>
 	{/each}
