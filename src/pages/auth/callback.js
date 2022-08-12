@@ -7,7 +7,7 @@ export async function GET({ url }) {
         // @ts-ignore
         body: new URLSearchParams({
             client_id: import.meta.env.VITE_CLIENT_ID,
-            client_secret: import.meta.env.VITE_CLIENT_SECRET,
+             client_secret: import.meta.env.VITE_CLIENT_SECRET,
             grant_type: 'authorization_code',
             redirect_uri: import.meta.env.VITE_SITE_URL + '/auth/callback',
             code: url.searchParams.get('code'),
