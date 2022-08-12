@@ -5,7 +5,8 @@
 		IconButton,
 		MenuFlyoutItem,
 		MenuFlyoutDivider,
-		ContextMenu
+		ContextMenu,
+		TextBlock
 	} from 'fluent-svelte';
 	import { goto } from '$app/navigation';
 
@@ -25,19 +26,22 @@
 	const adminHandle = () => {
 		goto('/admin');
 	};
+	const mybotsHandle = () => {
+		goto('/mybots');
+	};
 </script>
 
-<div class="w-full h-16 flex items-center justify-around">
-	<img src={image} alt="logo" width="60" />
-
+<div class="w-full h-16 flex items-center justify-evenly">
+	<a href="/"><img src={image} alt="logo" width="60" /></a>
 	{#if user}
 		<ContextMenu>
 			<IconButton href={`/profile/${user.id}`}>
-				<PersonPicture size={50} src={user.avatar_url} />
+				<PersonPicture size={51} src={user.avatar_url} />
 			</IconButton>
 
 			<svelte:fragment slot="flyout">
-				<MenuFlyoutItem href="/admin" on:click={adminHandle}>Admin</MenuFlyoutItem>
+				<MenuFlyoutItem on:click={adminHandle}>Admin</MenuFlyoutItem>
+				<MenuFlyoutItem on:click={mybotsHandle}>My Bots</MenuFlyoutItem>
 				<MenuFlyoutDivider />
 				<MenuFlyoutItem on:click={logoutHandle}>Logout</MenuFlyoutItem>
 			</svelte:fragment>

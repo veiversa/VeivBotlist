@@ -24,7 +24,7 @@ export async function GET({ url }) {
             status: 302,
         };
     }
-
+        
     return {
         headers: {
             'set-cookie': [

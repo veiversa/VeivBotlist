@@ -6,11 +6,39 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>Veiv Botlist</title>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+		/>
 
 		%sveltekit.head%
 	</head>
 	<body class="bg-[#212121]">
 		<div>%sveltekit.body%</div>
 	</body>
+	<style>
+		html {
+			scroll-behavior: smooth;
+		}
+		::-webkit-scrollbar {
+			width: 8px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 0.5px rgb(2, 2, 2);
+			border-radius: 10px;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: rgb(0, 0, 0);
+			border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: rgb(0, 0, 0);
+		}
+	</style>
 </html>
