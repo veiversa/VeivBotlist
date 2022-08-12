@@ -1,44 +1,6 @@
 <script>
 	import { Button, TextBlock, TextBox } from 'fluent-svelte';
-
-	const tags = [
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		},
-		{
-			name: 'Moderation',
-			href: '/bots?tag=moderation'
-		}
-	];
+	import tags from '$lib/tags.json';
 </script>
 
 <div class="w-full h-[450px] container text-white flex flex-col justify-center">
