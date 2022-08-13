@@ -1,24 +1,24 @@
 <script context="module">
 	import { browser } from '$app/env';
 
-	/** @type {import('@sveltejs/kit/types').Load} */
-	export async function load({ session }) {
-		// @ts-ignore
-		if (session.tokens && browser) {
-			await fetch('/auth/store_tokens', {
-				method: 'POST',
-				// @ts-ignore
-				body: JSON.stringify(session.tokens)
-			});
-
-			window.location.reload();
-		}
-
-		return {
+/** @type {import('@sveltejs/kit/types').Load} */
+export async function load({ session }) {
+	// @ts-ignore
+	if (session.tokens && browser) {
+		await fetch('/auth/store_tokens', {
+			method: 'POST',
 			// @ts-ignore
-			props: { user: session.user }
-		};
+			body: JSON.stringify(session.tokens)
+		});
+
+		window.location.reload();
 	}
+
+	return {
+		// @ts-ignore
+		props: { user: session.user }
+	};
+}
 </script>
 
 <script>

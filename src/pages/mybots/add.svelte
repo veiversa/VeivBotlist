@@ -49,53 +49,60 @@
 	let errors = [];
 
 	/** @type {boolean} */
-	let checked = false;
+	let checked;
+	/** @type {any} */
+	let responseData;
 
 	/** @type {?string}*/
 	let bot_id = null;
-
 	/** @type {?string}*/
 	let long_description = null;
-
 	/** @type {?string}*/
 	let short_description = null;
-
 	/** @type {?string}*/
 	let prefix = null;
-
 	/** @type {?string} */
 	let language = null;
-
 	/** @type {string[] }*/
 	let owners = [];
-
 	/** @type {?string}*/
 	let support_server = null;
 
 	const findBot = async () => {
-		if (checked) {
-			checked = false;
-			errors = [];
-		}
-
 		await fetch(`${import.meta.env.VITE_API_URL}/v1/users/${bot_id}`)
 			.then(async (response) => {
 				const data = await response.json();
-
+				responseData = data;
 				if (!data.user.bot) {
 					errors.push('Bot is user');
+					errors = errors;
+					return (checked = false);
 				} else {
-					await fetch(`${import.meta.env.VITE_API_URL}/v1/bots/${bot_id}`)
-						.then(() => {
+					await fetch(`${import.meta.env.VITE_API_URL}/v1/bots/${bot_id}`).then((a) => {
+						console.log(a);
+						if (a.status !== 404) {
 							errors.push('Bot is already exists');
-						})
-						.catch(() => null);
+							checked = false;
+							errors = errors;
+						} else {
+							checked = true;
+						}
+					});
 				}
 			})
 			.catch(() => {
 				errors.push('Invalid id was provided');
+				errors = errors;
 			});
-		checked = true;
+		checked = checked;
+	};
+	const StepTwo = () => {
+		let getID = document.getElementById('sarpklas');
+		let get2ID = document.getElementById('sarpklas2');
+		// @ts-ignore
+		getID.style.display = 'block';
+		// @ts-ignore
+		get2ID.style.display = 'none';
 	};
 </script>
 
@@ -103,14 +110,15 @@
 
 {#key errors.length}
 	{#each errors as error}
-		<InfoBar title="Error" message={error} severity="critical" />
+		<div class="absolute top-8 right-10">
+			<InfoBar title="Error" message={error} severity="critical" />
+		</div>
 	{/each}
 {/key}
 
 <div class="flex w-full mt-2">
 	<div class="w-64 h-full">
 		<div class="">
-			
 			<ListItem on:click={mybotsHandle}>
 				<svg
 					slot="icon"
@@ -162,7 +170,7 @@
 	</div>
 
 	<div class="container text-white mt-20 oveflow-y-auto">
-		<div class="mx-10 flex flex-col">
+		<div class="mx-10 flex flex-col" id="sarpklas2">
 			<TextBlock variant="title">Provide your Discord Bot's Application ID</TextBlock>
 			<div class="text-gray-400 my-3">
 				<TextBlock variant="subtitle"
@@ -177,6 +185,77 @@
 				<Button on:click={findBot} disabled={!bot_id} variant="accent" style="width: 100px"
 					>Find</Button
 				>
+			</div>
+			{#if checked}
+				<div class="mt-8 text-gray-200 flex items-center">
+					<img src={responseData.user.avatar_url} class="rounded-lg w-40" alt="" />
+					<div class="flex flex-col mx-4">
+						<TextBlock variant="title">{responseData.user.username}</TextBlock>
+						<div class="text-gray-300">
+							<TextBlock variant="subtitle">#{responseData.user.discriminator}</TextBlock>
+						</div>
+						<Button on:click={StepTwo} variant="accent">Next Step</Button>
+					</div>
+				</div>
+			{/if}
+		</div>
+		<!--Next Step-->
+		<div class="hidden" id="sarpklas">
+			<div class="flex justify-between">
+				<div>
+					<!--Short Description-->
+					<div class="mb-10 w-[550px]">
+						<div>
+							<TextBlock variant="title">Short Description</TextBlock>
+						</div>
+						<div>
+							<TextBox placeholder="Pls enter bot description :D" />
+						</div>
+					</div>
+	
+					<!--Long Description-->
+					<div class="mb-10 w-[550px]">
+						<div>
+							<TextBlock variant="title">Long Description</TextBlock>
+						</div>
+						<div>
+							<TextBox />
+						</div>
+					</div>
+	
+					<!--Prefix-->
+					<div class="mb-10 w-[550px]">
+						<div>
+							<TextBlock variant="title">Prefix</TextBlock>
+						</div>
+						<div>
+							<TextBox />
+						</div>
+					</div>
+	
+					<!--Language-->
+					<div class="mb-10 w-[550px]">
+						<div>
+							<TextBlock variant="title">Language</TextBlock>
+						</div>
+						<div>
+							<TextBox />
+						</div>
+					</div>
+	
+					<!--Owners-->
+					<div class="mb-10 w-[550px]">
+						<div>
+							<TextBlock variant="title">Owners</TextBlock>
+						</div>
+						<div>
+							<TextBox />
+						</div>
+					</div>
+				</div>
+				{#if responseData}
+				<img src={responseData.user.avatar_url} alt="bot pp">
+				{/if}
 			</div>
 		</div>
 	</div>

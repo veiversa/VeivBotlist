@@ -58,7 +58,7 @@
 <Navbar {user} />
 
 <div class="flex w-full mt-2">
-	//sal pushlim
+	
 	<div class="w-64 h-full">
 		<div class="">
 			
