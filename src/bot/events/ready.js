@@ -6,6 +6,7 @@ export default class ReadyEvent extends BaseEvent {
         super({ event: 'ready', once: true });
     }
 
+    /** @type {import("../struct/client").default} client */
     callback(client) {
         console.log(`Logged in as ${client.user.tag}!`);
 

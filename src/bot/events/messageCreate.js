@@ -5,11 +5,12 @@ export default class MessageCreateEvent extends BaseEvent {
         super({ event: 'messageCreate' });
     }
 
-    /** @type {import("discord.js").Message} m */
+    /** @type {import("../struct/client").default} client @type {import("discord.js").Message} m */
     callback(client, m) {
-        console.log(m.content)
         if (m.content === '!ping') {
             m.reply(`Pong! :ping_pong: **${client.ws.ping}**ms`);
+        } else if (m.content === '!site') {
+            m.reply('https://veivbotlist.com ^^');
         }
     }
 }
