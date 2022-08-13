@@ -25,7 +25,6 @@
 	import { ListItem, TextBlock, Button } from 'fluent-svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { goto } from '$app/navigation';
-	
 	export /**
 	 * @type {boolean | Record<string, any>}
 	 */
@@ -53,7 +52,7 @@
 	<!--Sidebar-->
 	<div class="w-64 h-full">
 		<div class="">
-			<ListItem on:click={profileHandle}>
+			<ListItem selected on:click={profileHandle}>
 				<svg slot="icon" width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 					><path
 						d="M4.249 13.995h5.876c-.349.423-.574.952-.62 1.53l-.009.22v4.5c0 .665.236 1.275.63 1.75l-.13.001c-3.42 0-5.943-1.072-7.486-3.236A2.75 2.75 0 0 1 2 17.164v-.92a2.249 2.249 0 0 1 2.249-2.249Zm10.497-2.5h3c.648 0 1.18.492 1.244 1.123l.007.127-.001 1.25h1.25c.967 0 1.75.784 1.75 1.75v4.5a1.75 1.75 0 0 1-1.75 1.75h-8a1.75 1.75 0 0 1-1.75-1.75v-4.5c0-.966.784-1.75 1.75-1.75h1.25v-1.25c0-.647.492-1.18 1.123-1.243l.127-.007h3-3Zm2.75 1.5h-2.5v1h2.5v-1ZM9.997 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"
@@ -62,7 +61,7 @@
 				>
 				Profile
 			</ListItem>
-			<ListItem selected on:click={mybotsHandle}>
+			<ListItem on:click={mybotsHandle}>
 				<svg slot="icon" width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 					><path
 						d="M17.753 14a2.25 2.25 0 0 1 2.25 2.25v.905a3.75 3.75 0 0 1-1.307 2.846C17.13 21.345 14.89 22 12 22c-2.89 0-5.128-.656-6.691-2a3.75 3.75 0 0 1-1.306-2.843v-.908A2.25 2.25 0 0 1 6.253 14h11.5ZM11.898 2.008 12 2a.75.75 0 0 1 .743.648l.007.102V3.5h3.5a2.25 2.25 0 0 1 2.25 2.25v4.505a2.25 2.25 0 0 1-2.25 2.25h-8.5a2.25 2.25 0 0 1-2.25-2.25V5.75A2.25 2.25 0 0 1 7.75 3.5h3.5v-.749a.75.75 0 0 1 .648-.743L12 2l-.102.007ZM9.75 6.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Zm4.493 0a1.25 1.25 0 1 0 0 2.499 1.25 1.25 0 0 0 0-2.499Z"
@@ -94,87 +93,7 @@
 	</div>
 	<!--Main Content-->
 	<div class="container oveflow-y-auto">
-		<TextBlock variant="title" style="color:white;">Your Bots</TextBlock>
-
-		<div class="grid grid-cols-3 gap-2 mt-6">
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-			<div class="w-64 bg-[#fafafa] bg-opacity-5 rounded-lg border border-[#141f24] shadow-md hover:shadow-lg hover:bg-opacity-10 transition" id="sarpklas">
-				<img class="rounded-full mx-auto mt-4" src="https://www.saashub.com/images/app/service_logos/160/b5egw4e0bmyv/large.png?1602981606" alt="" />
-
-				<div class="p-4">
-					<a href="#c">
-						<h5 class="mb-1 text-2xl font-bold tracking-tight text-white">MEE6</h5>
-					</a>
-					<p class="mb-3 font-normal  text-gray-400">Ultra Sikişmiş Moderasyon Botu</p>
-					<Button style="" variant="accent">Bot Page</Button>
-				</div>
-			</div>
-		</div>
+		<TextBlock variant="title" style="color:white;">Your Profile</TextBlock>
 	</div>
 </div>
 
@@ -183,7 +102,4 @@
 		background-image: linear-gradient(to right, #141f24, #212121);
 	}
 
-	#sarpklas {
-		margin-bottom: 1rem;
-	}
 </style>
