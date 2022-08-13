@@ -1,13 +1,5 @@
 <script>
-	import {
-		Button,
-		PersonPicture,
-		IconButton,
-		MenuFlyoutItem,
-		MenuFlyoutDivider,
-		ContextMenu,
-		TextBlock
-	} from 'fluent-svelte';
+	import { Button, PersonPicture, IconButton, MenuFlyoutItem, MenuFlyoutDivider, ContextMenu, TextBlock } from 'fluent-svelte';
 	import { goto } from '$app/navigation';
 
 	import image from '$lib/images/veiv.png';
@@ -16,10 +8,10 @@
 	export let user;
 
 	const loginHandle = () => {
-		goto('/auth/login');
+		window.location.href = `${import.meta.env.VITE_API_URL}/v1/auth/login`;
 	};
 
-	const logoutHandle = () => {
+	const logoutHandle = async () => {
 		goto('/auth/logout');
 	};
 
