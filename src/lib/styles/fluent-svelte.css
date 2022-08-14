@@ -64,9 +64,9 @@
 
 :root {
 	/* Text */
-	--fds-text-primary: hsla(0, 0%, 100%, 100%);
+	--fds-text-primary: #ffffff;
 	--fds-text-secondary: hsla(0, 0%, 100%, 78.6%);
-	--fds-text-tertiary: hsla(0, 0%, 100%, 54.42%);
+	--fds-text-tertiary: hsla(0, 0%, 100%, 0.545);
 	--fds-text-disabled: hsla(0, 0%, 100%, 36.28%);
 
 	/* Accent */
@@ -79,7 +79,7 @@
 	--fds-accent-text-primary: hsl(var(--fds-accent-light-3));
 	--fds-accent-text-secondary: hsl(var(--fds-accent-light-3));
 	--fds-accent-text-tertiary: hsl(var(--fds-accent-light-2));
-	--fds-accent-text-disabled: hsla(0, 0%, 100%, 36.28%);
+	--fds-accent-text-disabled: #ffffff5d;
 
 	/* Text on Accent */
 	--fds-text-on-accent-primary: hsl(0, 0%, 0%);

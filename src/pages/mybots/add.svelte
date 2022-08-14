@@ -22,7 +22,7 @@
 </script>
 
 <script>
-	import { ListItem, TextBlock, Button, TextBox, InfoBar } from 'fluent-svelte';
+	import { ListItem, TextBlock, Button, TextBox, InfoBar, Checkbox, Expander } from 'fluent-svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 
 	/** @type {false | Record<string, any>} */
@@ -44,6 +44,8 @@
 	const settingsHandle = () => {
 		goto('/settings');
 	};
+	/**@type {boolean}*/
+	let clicked = false;
 
 	/** @type {string[]}*/
 	let errors = [];
@@ -61,25 +63,30 @@
 	let short_description = null;
 	/** @type {?string}*/
 	let prefix = null;
-	/** @type {?string} */
-	let language = null;
+	/**@type {boolean}*/
+	let slashcommandsupport;
+	/** @type {Object} */
+	let language = {
+		kürtce: false
+	};
 	/** @type {string[] }*/
 	let owners = [];
 	/** @type {?string}*/
 	let support_server = null;
 
 	const findBot = async () => {
+		clicked = true;
 		await fetch(`${import.meta.env.VITE_API_URL}/v1/users/${bot_id}`)
 			.then(async (response) => {
 				const data = await response.json();
 				responseData = data;
+
 				if (!data.user.bot) {
 					errors.push('Bot is user');
 					errors = errors;
-					return (checked = false);
+					checked = false;
 				} else {
 					await fetch(`${import.meta.env.VITE_API_URL}/v1/bots/${bot_id}`).then((a) => {
-						console.log(a);
 						if (a.status !== 404) {
 							errors.push('Bot is already exists');
 							checked = false;
@@ -95,6 +102,7 @@
 				errors = errors;
 			});
 		checked = checked;
+		clicked = clicked;
 	};
 	const StepTwo = () => {
 		let getID = document.getElementById('sarpklas');
@@ -103,17 +111,33 @@
 		getID.style.display = 'block';
 		// @ts-ignore
 		get2ID.style.display = 'none';
+		errors = [];
 	};
-</script>
+	const controllerSumbit = async () => {
+		if (long_description === null) {
+			errors.push('Long description is required');
+			errors = errors;
+		}
+		if (short_description === null) {
+			errors.push('Short description is required');
+			errors = errors;
+		}
+		if (prefix === null) {
+			errors.push('Prefix is required');
+			errors = errors;
+		}
+		console.log(errors, long_description, short_description, prefix);
+	};
+	</script>
 
 <Navbar {user} />
 
-{#key errors.length}
-	{#each errors as error}
-		<div class="absolute top-8 right-10">
+{#key errors.length > 0}
+	<div class="fixed top-8 right-10">
+		{#each errors as error}
 			<InfoBar title="Error" message={error} severity="critical" />
-		</div>
-	{/each}
+		{/each}
+	</div>
 {/key}
 
 <div class="flex w-full mt-2">
@@ -180,7 +204,7 @@
 			</div>
 			<div class="flex">
 				<div class="mx-2 w-[350px]">
-					<TextBox placeholder="Enter your bot id" bind:value={bot_id} />
+					<TextBox disabled={clicked} placeholder="Enter your bot id" bind:value={bot_id} />
 				</div>
 				<Button on:click={findBot} disabled={!bot_id} variant="accent" style="width: 100px"
 					>Find</Button
@@ -201,61 +225,100 @@
 		</div>
 		<!--Next Step-->
 		<div class="hidden" id="sarpklas">
-			<div class="flex justify-between">
-				<div>
-					<!--Short Description-->
-					<div class="mb-10 w-[550px]">
-						<div>
-							<TextBlock variant="title">Short Description</TextBlock>
-						</div>
-						<div>
-							<TextBox placeholder="Pls enter bot description :D" />
-						</div>
-					</div>
-	
-					<!--Long Description-->
-					<div class="mb-10 w-[550px]">
-						<div>
-							<TextBlock variant="title">Long Description</TextBlock>
-						</div>
-						<div>
-							<TextBox />
-						</div>
-					</div>
-	
-					<!--Prefix-->
-					<div class="mb-10 w-[550px]">
-						<div>
-							<TextBlock variant="title">Prefix</TextBlock>
-						</div>
-						<div>
-							<TextBox />
-						</div>
-					</div>
-	
-					<!--Language-->
-					<div class="mb-10 w-[550px]">
-						<div>
-							<TextBlock variant="title">Language</TextBlock>
-						</div>
-						<div>
-							<TextBox />
-						</div>
-					</div>
-	
-					<!--Owners-->
-					<div class="mb-10 w-[550px]">
-						<div>
-							<TextBlock variant="title">Owners</TextBlock>
-						</div>
-						<div>
-							<TextBox />
+			
+			<div class="flex">	
+				{#if responseData}
+				<div class="flex w-[350px] my-2 mr-4 items-center">
+					<img
+						class="rounded-full h-48"
+						src={responseData.user.avatar_url}
+						alt={responseData.user.username + 'avatar'}
+					/>
+					<div class="flex flex-col mx-2">
+						<TextBlock variant="title">{responseData.user.username}</TextBlock>
+						<div class="text-gray-300">
+							<TextBlock variant="subtitle">#{responseData.user.discriminator}</TextBlock>
 						</div>
 					</div>
 				</div>
-				{#if responseData}
-				<img src={responseData.user.avatar_url} alt="bot pp">
 				{/if}
+
+				<div>
+					<div class="mb-10 w-[450px]">
+						<div>
+							<TextBlock variant="title" style="margin-bottom: 0.50rem;">Short Description</TextBlock>
+						</div>
+						<div>
+							<TextBox placeholder="Pls enter bot description :D" bind:value={short_description} />
+						</div>
+					</div>
+					<!--Prefix-->
+				<div class="mb-10 w-[450px]">
+					<div>
+						<TextBlock variant="title" style="margin-bottom: 0.50rem;">Prefix</TextBlock>
+					</div>
+					<div>
+						<TextBox placeholder="!prefix" bind:value={prefix} />
+						<Checkbox bind:slashcommandsupport>Slash Command Support</Checkbox>
+					</div>
+				</div>
+				</div>	
+			</div>
+
+
+			<div class="flex justify-between">
+				<div>
+					
+
+					<!--Long Description-->
+					<div class="mb-10 w-[850px]">
+						<div>
+							<TextBlock variant="title" style="margin-bottom: 0.50rem;">Long Description</TextBlock>
+						</div>
+						<div>
+							<textarea
+								class="w-full bg-[#FFFFFF10] border-b-2 border-gray-300 rounded-lg p-2 form-control block text-base font-normal transition ease-in-out m-0 focus:outline-none"
+								rows="10"
+								placeholder="Tell us all about your bot! What makes your bot stand out? What commands does your bot have? What features does your bot bring to the table? Minimum 200 characters required."
+								bind:value={long_description}
+							/>
+						</div>
+					</div>
+
+					
+
+					<!--Language-->
+					<div class="mb-10 w-[850px]">
+						<div>
+							<TextBlock variant="title" style="margin-bottom: 0.50rem;">Language</TextBlock>
+						</div>
+						<div>
+							<Expander>
+								Select Languages
+								<svelte:fragment slot="content">
+									<div><Checkbox /> English</div>
+									<div><Checkbox /> Turkish</div>
+									<div><Checkbox /> German</div>
+									<div><Checkbox /> French</div>
+									<div><Checkbox /> İtalian</div>
+								</svelte:fragment>
+							</Expander>
+						</div>
+					</div>
+
+					<!--Owners-->
+					<div class="mb-10 w-[850px]">
+						<div>
+							<TextBlock variant="title" style="margin-bottom: 1rem;">Owners</TextBlock>
+						</div>
+						<div>
+							<TextBox bind:value={owners} />
+						</div>
+					</div>
+					<div class="py-1 px-3 text-xl float-right">
+						<Button variant="accent" on:click={controllerSumbit}>Submit</Button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
