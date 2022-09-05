@@ -26,19 +26,20 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import PopulerBot from '$lib/components/PopulerBots.svelte';
 	import SearchBots from '$lib/components/SearchBots.svelte';
-
+	import WhyBro from '$lib/components/WhyBro.svelte';
 	/** @type {Record<string, any> | false} */
 	export let user;
 </script>
 
 <head>
-	<title>VeivBotlist</title>
+	<title>VeivBotlist </title>
 </head>
 
 <Navbar {user} />
 
 <SearchBots />
 <PopulerBot />
+<WhyBro />
 
 
 <Footer />
